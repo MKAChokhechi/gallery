@@ -60,7 +60,7 @@ class Home extends Component {
                                         <h2>{articles.name}</h2>
                                     </div>
                                     <link to="/home" className="d-block mb-4 h-100"/>
-                                    <img className="img-fluid img-thumbnail" src={articles.pictures}/>
+                                    <img className="img-fluid img-thumbnail"/>
 
                                 </div>
                                 {/*<div className="col-lg-4" style={{ marginBottom : 20 }}>*/}

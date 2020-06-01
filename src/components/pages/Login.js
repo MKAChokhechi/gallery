@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import validator from 'validator';
 import axios from 'axios';
-
 class Login extends Component {
     constructor(props) {
         super(props);
         if(this.props.auth) {
-            this.props.history.push('/')
+            this.props.history.push('/home')
         }
 
         this.state = {
             fields : {
-                email : '',
+                username : '',
                 password : ''
             },
             errors : {}
@@ -24,13 +23,14 @@ class Login extends Component {
         let formIsValid = true;
 
         // Email
-        if(validator.isEmpty(fields.email)) {
+        if(validator.isEmpty(fields.username)) {
             formIsValid = false;
             errors["email"] = "فیلد ایمیل نمیتواند خالی بماند";
-        } else if(! validator.isEmail(fields.email)) {
-            formIsValid = false;
-            errors["email"] = "فرمت ایمیل اشتباه است";
         }
+        // else if(! validator.isEmail(fields.username)) {
+        //     formIsValid = false;
+        //     errors["username"] = "فرمت ایمیل اشتباه است";
+        // }
 
         // Email
         if(validator.isEmpty(fields.password)) {
@@ -54,17 +54,14 @@ class Login extends Component {
     }
 
     handleRequest() {
-        const { email , password } = this.state.fields;
+        const { username , password } = this.state.fields;
 
-        let data = new FormData();
-        data.append('username' , email);
-        data.append('password' , password);
-
-        axios.post('http://stadiumticket.ir/login' , data)
+        axios.post('http://stadiumticket.ir/login' , {username,password})
             .then(response => {
-                localStorage.setItem('api_token' , response.data.actions);
+                localStorage.setItem('api_token' , response.data);
                 this.props.login();
-                this.props.history.push('/')
+                this.props.history.push('/home')
+
             })
             .catch(error => {
                 console.log(error)
@@ -80,22 +77,22 @@ class Login extends Component {
     }
 
     render() {
-        const {email , password} = this.state.fields;
+        const {username , password} = this.state.fields;
         const { errors } = this.state;
         return (
             <div>
                 <h2>Login Form</h2>
                 <form onSubmit={this.handleSubmit.bind(this)} className="col-lg-5" style={{ marginTop : 20}}>
                     <div className="form-group">
-                        <label>Email : </label>
+                        <label>User Name : </label>
                         <input
                             type="text"
-                            className={["form-control" , errors["email"] ? 'is-invalid' : ''].join(' ')}
-                            name="email"
-                            value={email}
+                            className={["form-control" , errors["username"] ? 'is-invalid' : ''].join(' ')}
+                            name="username"
+                            value={username}
                             onChange={this.handleChange.bind(this)}
-                            placeholder="Please enter your email"/>
-                        <span className="invalid-feedback rtl" style={{ display : errors["email"] ? 'block' : 'none'}}>{errors["email"]}</span>
+                            placeholder="Please enter your User Name"/>
+                        <span className="invalid-feedback rtl" style={{ display : errors["username"] ? 'block' : 'none'}}>{errors["email"]}</span>
                     </div>
                     <div className="form-group">
                         <label>Password : </label>
@@ -109,9 +106,10 @@ class Login extends Component {
                         <span className="invalid-feedback rtl" style={{ display : errors["password"] ? 'block' : 'none'}}>{errors["password"]}</span>
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-danger" type="submit">Login</button>
+                        <button className="btn btn-danger" type="submit">Log In</button>
                     </div>
                 </form>
+
             </div>
         );
     }

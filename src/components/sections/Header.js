@@ -13,7 +13,7 @@ class Header extends Component {
                     </div>
                     <div id="navbar" className="collapse navbar-collapse">
                         <ul className="mr-auto navbar-nav">
-                            <NavItem activeOnlyWhenExact={true} activeClassName="selected" to="/">Home</NavItem>
+                            <NavItem activeOnlyWhenExact={true} activeClassName="selected" to="/home">Home</NavItem>
                             <NavItem to="/about">Add Pic</NavItem>
                             <NavItem to="/contact">Contact</NavItem>
                         </ul>
@@ -26,7 +26,9 @@ class Header extends Component {
                                             <button className="btn btn-warning" style={{ marginLeft : 10}} onClick={this.props.logout}>Logout</button>
                                         </div>
                                     ) : (
-                                        <Link className="btn btn-success" to="/login">Login</Link>
+                                        <div>
+                                        <Link className="btn btn-success"  to="/login">Login</Link>
+                                        </div>
                                     )
                             }
 
