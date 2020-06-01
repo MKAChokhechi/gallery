@@ -14,7 +14,7 @@ class Header extends Component {
                     <div id="navbar" className="collapse navbar-collapse">
                         <ul className="mr-auto navbar-nav">
                             <NavItem activeOnlyWhenExact={true} activeClassName="selected" to="/">Home</NavItem>
-                            <NavItem to="/about">About</NavItem>
+                            <NavItem to="/about">Add Pic</NavItem>
                             <NavItem to="/contact">Contact</NavItem>
                         </ul>
                         <div className="my-2 my-lg-0">

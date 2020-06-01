@@ -57,12 +57,12 @@ class Login extends Component {
         const { email , password } = this.state.fields;
 
         let data = new FormData();
-        data.append('email' , email);
+        data.append('username' , email);
         data.append('password' , password);
 
-        axios.post('http://192.168.100.134:8000/login' , {username: email,password: password})
+        axios.post('http://stadiumticket.ir/login' , data)
             .then(response => {
-                localStorage.setItem('api_token' , response.data.api_token);
+                localStorage.setItem('api_token' , response.data.actions);
                 this.props.login();
                 this.props.history.push('/')
             })
@@ -78,6 +78,7 @@ class Login extends Component {
             if(valid) this.handleRequest()
         })
     }
+
     render() {
         const {email , password} = this.state.fields;
         const { errors } = this.state;

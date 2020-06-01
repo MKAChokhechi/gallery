@@ -54,14 +54,12 @@ class App extends Component {
                 <div className="container">
                     <div style={{ paddingTop : 70 }}>
                         <Switch>
-                            <Route path="/" exact={true} render={(props) => <Login {...props} auth={this.state.isAuthenticated} login={this.handleLogin.bind(this)}/>}/>
-                            <PrivateRoute path="/user-panel" component={UserPanel} auth={this.state.isAuthenticated}/>
-                            <PrivateRoute path="/about" component={About} auth={this.state.isAuthenticated}/>
-                            {/*<Route path="/" exact={true} component={Home}/>*/}
+                            <Route path="/" exact={true} component={Home}/>
                             <Route path="/product/:id" component={Product}/>
-                            {/*<Route path="/about" component={About}/>*/}
+                            <Route path="/about" component={About}/>
                             <Route path="/contact" component={Contact}/>
-
+                            <PrivateRoute path="/user-panel" component={UserPanel} auth={this.state.isAuthenticated}/>
+                            <Route path="/login" render={(props) => <Login {...props} auth={this.state.isAuthenticated} login={this.handleLogin.bind(this)}/>}/>
                             <Route component={NoMatch}/>
                         </Switch>
                     </div>
