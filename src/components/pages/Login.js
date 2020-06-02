@@ -5,7 +5,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         if(this.props.auth) {
-            this.props.history.push('/home')
+            this.props.history.push('/')
         }
 
         this.state = {
@@ -58,9 +58,9 @@ class Login extends Component {
 
         axios.post('http://stadiumticket.ir/login' , {username,password})
             .then(response => {
-                localStorage.setItem('api_token' , response.data);
+                localStorage.setItem('api_token' , response.data.action);
                 this.props.login();
-                this.props.history.push('/home')
+                this.props.history.push('/')
 
             })
             .catch(error => {

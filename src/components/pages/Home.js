@@ -14,18 +14,18 @@ class Home extends Component {
         }
     }
 
-    componentDidMount() {
-        // const { params } = this.props.match;
-        axios.get(`http://stadiumticket.ir/albums`)
-            .then(response => {
-                this.setState({
-                    articles: response.data
-                })
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    // componentDidMount() {
+    //     // const { album } = this.state.articles;
+    //     axios.get(`http://stadiumticket.ir/album/pictures`)
+    //         .then(response => {
+    //             this.setState({
+    //                 articles: response.data.action
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
 
     // handleLoadMore() {
     //     axios.get(`http://stadiumticket.ir/album/y/pictures?page=${this.state.nextPage}`)
@@ -45,7 +45,6 @@ class Home extends Component {
 
     render() {
         const {articles} = this.state;
-
         return (
             <>
                 {
@@ -60,7 +59,7 @@ class Home extends Component {
                                         <h2>{articles.name}</h2>
                                     </div>
                                     <link to="/home" className="d-block mb-4 h-100"/>
-                                    <img className="img-fluid img-thumbnail"/>
+                                    <img className="img-fluid img-thumbnail" />
 
                                 </div>
                                 {/*<div className="col-lg-4" style={{ marginBottom : 20 }}>*/}
